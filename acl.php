@@ -11,6 +11,8 @@
   $doc_id  = intval(isset($_POST['doc_id']) ? ($_POST['doc_id']) : "");
   $level   = mysql_real_escape_string(isset($_POST['level']) ? ($_POST['level']) : "");
 
+  $user = new user($_SESSION['login']);
+  $document = new document($doc_id);
 
   if( !may_god($user->id, $document->id) ) {
      print_header("Permission Denied");
